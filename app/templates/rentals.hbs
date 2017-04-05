@@ -7,10 +7,17 @@
   {{/link-to}}
 </div>
 
-{{! Here we invoke the rental-listing(.hbs) component by name, and assign each rentalUnit as the rental attribute of the component. }}
-{{#each model as |rentalUnit|}}
-  {{rental-listing rental=rentalUnit}}
-{{/each}}
-
+{{!-- This is an example of the block form of a component, which allows a Handlebars template to be rendered inside the component's template wherever the {{yield}} expression appears.
+We are passing, or "yielding", our filter data to the inner markup as a variable called rentals--}}
+{{#list-filter
+    filter=(action 'filterByCity')
+    as |rentals|}}
+    <ul class="results">
+      {{! Here we invoke the rental-listing(.hbs) component by name, and assign each rentalUnit as the rental attribute of the component. }}
+      {{#each model as |rentalUnit|}}
+        {{rental-listing rental=rentalUnit}}
+      {{/each}}
+    </ul>
+{{/list-filter}}
 
 {{outlet}}
