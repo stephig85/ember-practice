@@ -1,0 +1,7 @@
+{{!-- the component will provide an input field and yield the results list to its block --}}
+{{!-- input is a 'helper' that renders as a text field, and is "BOUND" to the value property so that the user will see results as they type --}}
+{{input value=value
+        key-up=(action 'handleFilterEntry')
+        class="light"
+        placeholder="Filter By City"}}
+{{yield results}}
